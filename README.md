@@ -1,44 +1,72 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
+description: Uma descrição é sempre bem vinda.
+---
 
-## Available Scripts
+# Home
 
-In the project directory, you can run:
+{% api-method method="get" host="https://api.cakes.com" path="/v1/cakes/:id" %}
+{% api-method-summary %}
+Get Cakes
+{% endapi-method-summary %}
 
-### `npm start`
+{% api-method-description %}
+This endpoint allows you to get free cakes.
+{% endapi-method-description %}
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="id" type="string" %}
+ID of the cake to get, for free of course.
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+{% api-method-headers %}
+{% api-method-parameter name="Authentication" type="string" required=true %}
+Authentication token to track down who is emptying our stocks.
+{% endapi-method-parameter %}
+{% endapi-method-headers %}
 
-### `npm test`
+{% api-method-query-parameters %}
+{% api-method-parameter name="recipe" type="string" %}
+The API will do its best to find a cake matching the provided recipe.
+{% endapi-method-parameter %}
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+{% api-method-parameter name="gluten" type="boolean" %}
+Whether the cake should be gluten-free or not.
+{% endapi-method-parameter %}
+{% endapi-method-query-parameters %}
+{% endapi-method-request %}
 
-### `npm run build`
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+Cake successfully retrieved.
+{% endapi-method-response-example-description %}
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```javascript
+{
+    "name": "Cake's name",
+    "recipe": "Cake's recipe name",
+    "cake": "Binary cake"
+}
+```
+{% endapi-method-response-example %}
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+{% api-method-response-example httpCode=404 %}
+{% api-method-response-example-description %}
+Could not find a cake matching this query.
+{% endapi-method-response-example-description %}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```javascript
+{
+    "message": "Ain't no cake like that."
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
